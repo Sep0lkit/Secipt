@@ -3,7 +3,7 @@
 ---
 
 ####Usage:
-	Past the XHR.GET_Simple.js to Chrome DevTools's Console, Replace the $Var.
+	Past the XHR.GET_Simple.js to Chrome DevTools's Console, Replace the $VAR.
 
 ####Description:
 		$URL: 
