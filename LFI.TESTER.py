@@ -40,8 +40,9 @@ try:
 				file = arg
 				if file.startswith('/',0,1):
 					file =file[1:]	
-			if opt in("-d","--keyword"):
+			if opt in("-k","--keyword"):
 				keyword = arg
+				#print keyword
 
 except getopt.GetoptError:
 		usage()
@@ -54,7 +55,9 @@ for i in range(0,depth):
 		print "Testing: ",url
 		try:
 				response = urllib2.urlopen(url)
+				#print response.info()
 				html = response.read()
+				#print html
 		except:
 				pass
 		if(keyword in html):
