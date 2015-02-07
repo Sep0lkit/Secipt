@@ -13,10 +13,18 @@ url = ''
 keyword='root'
 
 def usage():
-		print "usage function"
+		print "LFI.Tester.py Help:"
+		print "Usage: LFI.TESTER.py -t [-d] [-f] [-k]"
+		print "	-t,--target The test url"
+		print "	-d,--depth 	The depth for test (Default is 6)"
+		print "	-f,--file The File include  (Default is etc/passwd)"
+		print "	-k,--keyword	the keyword for vuln check (Default is root)"
 
 
 try:
+		if len(sys.argv) < 2:
+				usage()
+				sys.exit()
 		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:",["help","target=","depth=","file=","keyword="])
 		for opt, arg in opts:
 			if opt in("-h","--help"):
