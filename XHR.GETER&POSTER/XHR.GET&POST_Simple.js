@@ -1,3 +1,6 @@
+/*
+ * @KaiyiZhang Github
+ */
 //The Variable
 var gurl = "$GURL";                             //The GET URL
 var purl = "$PURL";                             //The POST URL

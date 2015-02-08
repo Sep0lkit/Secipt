@@ -1,3 +1,6 @@
+/*
+ * @KaiyiZhang Github
+ */
 var url = "$URL";                                        //The Target       
 var xhr = new XMLHttpRequest();
 xhr.open("GET",url,"$IsAsync[True|False]");              // Ture: Async
