@@ -39,6 +39,9 @@ try:
 						target = 'http://' + target
 			if opt in("-d","--depth"):
 				depth = int(arg)
+				if depth < 1:
+					usage()
+					sys.exit()
 			if opt in("-f","--file"):
 				file = arg
 				if file.startswith('/',0,1):
