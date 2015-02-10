@@ -13,7 +13,8 @@ file = 'etc/passwd'
 html = ''
 prefix = ''
 url = ''
-keyword='root'
+keyword = 'root'
+force = False
 
 def usage():
 		print "LFI.Tester.py Help:"
@@ -28,7 +29,7 @@ try:
 		if len(sys.argv) < 2:
 				usage()
 				sys.exit()
-		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:",["help","target=","depth=","file=","keyword="])
+		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:n",["help","target=","depth=","file=","keyword=","no-break"])
 		for opt, arg in opts:
 			if opt in("-h","--help"):
 				usage()
@@ -49,7 +50,8 @@ try:
 			if opt in("-k","--keyword"):
 				keyword = arg
 				#print keyword
-
+			if opt in("-n","--no-break"):
+				force = True
 except getopt.GetoptError:
 		usage()
 		sys.exit(2)
@@ -66,9 +68,12 @@ for i in range(0,depth):
 				#print html
 		except:
 				pass
-		if(keyword in html):
+		if keyword in html:
 				print url, " is Vulnerable"
-				break
+				if not force:
+					break
+				else:
+					continue
 		else:
 				time.sleep(2)
 				continue
