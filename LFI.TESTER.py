@@ -23,6 +23,7 @@ def usage():
 		print "	-d,--depth 	The depth for test (Default is 6)"
 		print "	-f,--file The File include  (Default is etc/passwd)"
 		print "	-k,--keyword	the keyword for vuln check (Default is root)"
+		print " -n,--no-break 	no break while the vuln finded"
 
 
 try:
