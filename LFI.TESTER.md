@@ -12,3 +12,5 @@
 		-f,--file The File include  (Default is etc/passwd)
 
 		-k,--keyword	the keyword for vuln check (Default is root)
+
+		-n,--no-break	no break while the vuln  finded
