@@ -1,9 +1,6 @@
 <?php
-/*
-License: LGPL as per: http://www.gnu.org/copyleft/lesser.html
-$Id: proxy.php 3650 2007-11-28 00:26:06Z rdewit $
-$Name$
-*/
+//@KaiyiZhang Github
+//
 ////////////////////////////////////////////////////////////////////////////////
 // Description:
 // Script to redirect the request http://host/proxy.php?url=http://someUrl
