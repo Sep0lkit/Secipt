@@ -26,7 +26,7 @@ def usage():
 		print "	-n,--no-break	no break while the vuln finded"
 
 def writefile(url):
-		f = open('result.txt','a')
+		f = open('out.txt','a')
 		f.writelines(url)
 
 try:
