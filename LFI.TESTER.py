@@ -25,6 +25,9 @@ def usage():
 		print "	-k,--keyword	the keyword for vuln check (Default is root)"
 		print "	-n,--no-break	no break while the vuln finded"
 
+def writefile(url):
+		f = open('result.txt','a')
+		f.writelines(url)
 
 try:
 		if len(sys.argv) < 2:
@@ -71,6 +74,7 @@ for i in range(0,depth):
 				pass
 		if keyword in html:
 				print url, " is Vulnerable"
+				writefile(url)
 				if not force:
 					break
 				else:
