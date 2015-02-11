@@ -4,6 +4,7 @@
 
 ####Usage:
 	LFI.TESTER.py -t [-d] [-f] [-k]
+	The vuln url will auto-saved into out.txt
 ####Description:
 		-t,--target The test url
 
