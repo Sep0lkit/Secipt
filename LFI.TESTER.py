@@ -27,7 +27,8 @@ def usage():
 
 def writefile(url):
 		f = open('out.txt','a')
-		f.writelines(url)
+		t = time.strftime('%Y-%m-%d %X ',time.localtime())
+		f.writelines(t + url)
 
 try:
 		if len(sys.argv) < 2:
