@@ -10,8 +10,8 @@
 
 		-d,--depth 	The depth for test (Default is 6)	
 
-		-f,--file The File include  (Default is etc/passwd)
+		-f,--file The File include  (Default is robots.txt)
 
-		-k,--keyword	the keyword for vuln check (Default is root)
+		-k,--keyword	the keyword for vuln check (Default is User-agent)
 
 		-n,--no-break	no break while the vuln  finded
