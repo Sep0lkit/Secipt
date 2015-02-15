@@ -12,6 +12,9 @@ file = 'robots.txt'
 
 html = ''
 prefix = ''
+block = (
+		'%00'
+		)
 url = ''
 keyword = 'User-agent'
 force = False
@@ -24,6 +27,16 @@ def usage():
 		print "	-f,--file The File include  (Default is robots.txt)"
 		print "	-k,--keyword	the keyword for vuln check (Default is User-agent)"
 		print "	-n,--no-break	no break while the vuln finded"
+
+def testurl(url):
+		print "Testing: ",url
+		try:
+				response = urllib2.urlopen(url)
+				#print response.info()
+				return response.read()
+				#print html
+		except:
+				pass
 
 def writefile(url):
 		f = open('out.txt','a')
@@ -65,14 +78,7 @@ except getopt.GetoptError:
 for i in range(0,depth):
 		prefix += '../'
 		url = target + prefix + file
-		print "Testing: ",url
-		try:
-				response = urllib2.urlopen(url)
-				#print response.info()
-				html = response.read()
-				#print html
-		except:
-				pass
+		html = testurl(url)
 		if keyword in html:
 				print url, " is Vulnerable"
 				writefile(url)
