@@ -12,18 +12,21 @@ file = 'robots.txt'
 
 html = ''
 prefix = ''
+block  = 1
 payload =['','%00','%01']
 url = ''
 keyword = 'User-agent'
 force = False
 
+
 def usage():
 		print "LFI.Tester.py Help:"
-		print "Usage: LFI.TESTER.py -t [-d] [-f] [-k]"
+		print "Usage: LFI.TESTER.py -t [-d] [-f] [-k] [-b] [-n]"
 		print "	-t,--target The test url"
 		print "	-d,--depth 	The depth for test (Default is 6)"
 		print "	-f,--file The File include  (Default is robots.txt)"
 		print "	-k,--keyword	the keyword for vuln check (Default is User-agent)"
+		print " -b,--break-test use advanced block test, level(1-) default is 1"
 		print "	-n,--no-break	no break while the vuln finded"
 
 def testurl(url):
@@ -44,7 +47,7 @@ try:
 		if len(sys.argv) < 2:
 				usage()
 				sys.exit()
-		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:bn",["help","target=","depth=","file=","keyword=","block-test","no-break"])
+		opts,args = getopt.getopt(sys.argv[1:],"ht:d:f:k:b:n",["help","target=","depth=","file=","keyword=","block-test=","no-break"])
 		for opt, arg in opts:
 			if opt in("-h","--help"):
 				usage()
@@ -66,7 +69,7 @@ try:
 				keyword = arg
 				#print keyword
 			if opt in("-b","--block-test"):
-				print "block-test"
+				block = int(arg)
 			if opt in("-n","--no-break"):
 				force = True
 except getopt.GetoptError:
@@ -75,7 +78,7 @@ except getopt.GetoptError:
 
 
 for i in range(0,depth+1):
-		for j in range(0,2):
+		for j in range(0,block+1):
 			url = target + prefix + file + payload[j]
 			print "Testing: ",url
 			html = testurl(url)
