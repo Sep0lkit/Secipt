@@ -12,7 +12,7 @@ file = 'robots.txt'
 
 html = ''
 prefix = ''
-block  = 1
+block  = 0
 payload =[
 	"",
 	"%00",
@@ -80,7 +80,7 @@ try:
 			if opt in("-b","--block-test"):
 				block = int(arg)
 				if(block < 1 or block >8):
-						block = 1
+						block = 0
 			if opt in("-n","--no-break"):
 				force = True
 except getopt.GetoptError:
